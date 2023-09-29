@@ -1,0 +1,31 @@
+<div>
+    <table class="table table-striped">
+        <thead class="table-dark p-2">
+          <th>Profile Image</th>
+          <th>Full Names</th>
+          <th>Email</th>
+          <th>Phone Number</th>
+          <th>Designation</th>
+          <th>Username</th>
+          <th>Action</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of [1,2,3,4,5]">
+                <td>
+                    <img class="table-img" src="assets/img/user.jpg">
+                </td>
+                <td>
+                    Peter Munyua
+                </td>
+                <td>munyuapeter07@gmail.com</td>
+                <td>0705984772</td>
+                <td>Manager</td>
+                <td>munyua</td>
+                <td>
+                    <button class="btn btn-info text-white"><i class="fas fa-edit"></i></button>
+                </td>
+            </tr>
+          
+        </tbody>
+      </table>
+</div>

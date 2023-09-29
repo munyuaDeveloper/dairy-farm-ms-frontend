@@ -1,0 +1,33 @@
+<div>
+    <table class="table table-striped">
+        <thead class="table-dark p-2">
+          <th>Image</th>
+          <th>Control Number</th>
+          <th>Name</th>
+          <th>Gender</th>
+          <th>Type</th>
+          <th>Date of Birth</th>
+          <th>Status</th>
+          <th>Action</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cow of [1,2,3,4,5]">
+                <td>
+                    <img class="table-img" src="assets/img/cow.jpg">
+                </td>
+                <td>
+                    #00{{cow}}
+                </td>
+                <td>Joy</td>
+                <td>Female</td>
+                <td>Freshian</td>
+                <td>20/03/2023</td>
+                <td class="text-success">Available</td>
+                <td>
+                    <button class="btn btn-info text-white"><i class="fas fa-edit"></i></button>
+                </td>
+            </tr>
+          
+        </tbody>
+      </table>
+</div>
