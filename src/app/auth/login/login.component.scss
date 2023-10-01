@@ -14,7 +14,9 @@
 
         .card {
             width: 30%;
-
+            @media (max-width: 575.98px) {
+                width: 90%;
+            }
             img {
                 width: 150px;
                 display: block;

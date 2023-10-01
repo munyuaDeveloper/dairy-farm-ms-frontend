@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { HostListener, Injectable, NgZone, OnInit } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -37,24 +37,7 @@ export class SidebarService {
           link: '/dashboard/cows'
         }
       ]
-    },
-    {
-      title: 'Monitoring',
-      icon: 'fa fa-desktop',
-      active: false,
-      type: 'dropdown',
-      submenus: [
-        {
-          title: 'Vaccine',
-          link: '/dashboard/vaccine'
-        },
-        {
-          title: 'Feed',
-          link: '/dashboard/feed'
-        }
-      ]
-    },
-    {
+    },    {
       title: 'Sale',
       icon: 'fa fa-shopping-cart',
       active: false,
@@ -84,8 +67,28 @@ export class SidebarService {
       active: false,
       type: 'simple',
       link: '/dashboard/milk-records'
-    }
+    },
+    {
+      title: 'Monitoring',
+      icon: 'fa fa-desktop',
+      active: false,
+      type: 'dropdown',
+      submenus: [
+        {
+          title: 'Vaccine',
+          link: '/dashboard/vaccine'
+        },
+        {
+          title: 'Feed',
+          link: '/dashboard/feed'
+        }
+      ]
+    },
+
   ];
+
+  deviceWidth!: number;
+  
   constructor() { }
 
   toggle() {

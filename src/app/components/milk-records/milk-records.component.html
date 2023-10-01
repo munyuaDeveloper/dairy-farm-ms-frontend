@@ -1,0 +1,45 @@
+<div>
+  <table class="table table-striped">
+    <thead class="table-dark p-2">
+      <th>ID</th>
+      <th>Cow Number</th>
+      <th>Date</th>
+      <th>Liters</th>
+      <th>Price per Liter</th>
+      <th>Total</th>
+      <th>Action</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let record of [1, 2, 3, 4, 5]">
+        <td>{{ record }}</td>
+        <td>#00{{ record }}</td>
+        <td>20/09/2023</td>
+        <td>30L</td>
+        <td>45</td>
+        <td>1350 Ksh</td>
+        <td>
+          <button class="btn btn-info text-white">
+            <i class="fas fa-edit"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <nav aria-label="Page navigation" class="float-end">
+    <ul class="pagination">
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>

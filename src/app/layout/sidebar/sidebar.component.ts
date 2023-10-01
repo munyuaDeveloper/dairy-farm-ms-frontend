@@ -16,7 +16,7 @@ import { RouterModule } from '@angular/router';
     RouterModule,
   ],
   providers: [
-
+    SidebarService
   ],
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
@@ -24,12 +24,10 @@ import { RouterModule } from '@angular/router';
 export class SidebarComponent {
 
   menus: any = [];
+
   constructor(public sidebarservice: SidebarService) {
     this.menus = sidebarservice.getMenuList();
    }
-
-  ngOnInit() {
-  }
 
   getSideBarState() {
     return this.sidebarservice.getSidebarState();
