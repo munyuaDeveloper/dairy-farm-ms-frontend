@@ -1,4 +1,4 @@
-<app-breadcrumb [activeBreadcrumb]="'Cow Records'"></app-breadcrumb>
+<app-breadcrumb [activeBreadcrumb]="'Cow Sales Records'"></app-breadcrumb>
 <div>
   <div class="create-button-container d-flex justify-content-end">
     <button type="button" class="btn btn-outline-primary mb-3" (click)="openModalWithComponent()">Create Record</button>
@@ -6,28 +6,26 @@
   <div class="table-responsive">
     <table class="table table-striped">
       <thead class="table-dark p-2">
-        <th>Image</th>
-        <th>Control Number</th>
-        <th>Name</th>
-        <th>Gender</th>
-        <th>Type</th>
-        <th>Date of Birth</th>
-        <th>Status</th>
+        <th>Cow Number</th>
+        <th>Date</th>
+        <th>Amount</th>
+        <th>Customer Name</th>
+        <th>Customer Contact</th>
+        <th>Customer Email</th>
+        <th>Remarks</th>
         <th>Action</th>
       </thead>
       <tbody>
         <tr *ngFor="let cow of [1,2,3,4,5]">
           <td>
-            <img class="table-img" src="assets/img/cow.jpg">
-          </td>
-          <td>
             #00{{cow}}
           </td>
-          <td>Joy</td>
-          <td>Female</td>
-          <td>Freshian</td>
           <td>20/03/2023</td>
-          <td class="text-success">Available</td>
+          <td>150,000 Ksh</td>
+          <td>Peter Maina</td>
+          <td>0705984772</td>
+          <td>munyuapeter07@gmail.com</td>
+          <td>Sold for meat</td>
           <td>
             <button class="btn btn-info text-white"><i class="fas fa-edit"></i></button>
           </td>

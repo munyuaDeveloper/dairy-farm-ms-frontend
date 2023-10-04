@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { PERFECT_SCROLLBAR_CONFIG, PerfectScrollbarConfigInterface, PerfectScrollbarModule } from 'ngx-perfect-scrollbar-next';
 import { BsDropdownConfig, BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CommonModule } from '@angular/common';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true
 };
@@ -23,7 +25,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         {
             provide: BsDropdownConfig,
             useValue: { isAnimated: true, autoClose: true }
-        }
+        },
+        BsModalService
     ],
     bootstrap: [AppComponent],
     imports: [
@@ -34,6 +37,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 
         PerfectScrollbarModule,
         BsDropdownModule.forRoot(),
+        FormsModule
     ]
 })
 export class AppModule { }

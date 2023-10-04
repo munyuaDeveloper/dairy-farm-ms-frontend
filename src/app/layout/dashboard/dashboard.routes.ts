@@ -26,6 +26,10 @@ const routes: Routes = [
       {
         path: 'milk-records',
         loadComponent: () => import('../../components/milk-records/milk-records.component').then(c => c.MilkRecordsComponent )
+      },
+      {
+        path: 'cow-sales',
+        loadComponent: () => import('../../components/sales/cow-sales/cow-sales.component').then(c => c.CowSalesComponent )
       }
     ]
   }
