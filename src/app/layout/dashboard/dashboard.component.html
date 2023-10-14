@@ -1,13 +1,14 @@
 <div class="page-wrapper" [ngClass]="{'toggled' : getSideBarState()}">
   <app-sidebar></app-sidebar>
   <main class="page-content">
-    <div class="container-fluid topbar">
+    <div class="container-fluid topbar fixed">
       <div class="row pt-3">
         <div class="col-1">
           <a class="text-white" (click)="toggleSidebar()"> <i class="fas fa-bars"></i></a>
         </div>
         <div class="col-11 d-flex justify-content-end pe-5">
-          <a href="#" (click)="false" class="text-white"><i class="fas fa-user"></i></a>
+          <a href="#" (click)="false" class="text-white text-decoration-none"><i class="fas fa-user me-1"></i> Hello Munyua</a>
+          <a href="#" (click)="false" class="text-white text-decoration-none ms-3"><i class="fas fa-power-off me-1"></i> Logout</a>
         </div>
       </div>
     </div>
