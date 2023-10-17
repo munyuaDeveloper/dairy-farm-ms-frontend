@@ -1,4 +1,5 @@
-<div *ngIf="loading" class="progress" style="height: 8px; transition: all .3s ease-out;">
+<!-- <div *ngIf="loading" class="progress" style="height: 8px; transition: all .3s ease-out;">
     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
-  </div>
-<router-outlet></router-outlet>
+  </div> -->
+  <ngx-spinner bdColor = "rgba(76, 88, 123, 0.4)" size = "large" color = "#fff" type = "ball-scale-multiple" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+  <router-outlet></router-outlet>

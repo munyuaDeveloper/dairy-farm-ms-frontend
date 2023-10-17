@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { SidebarService } from './sidebar.service';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar-next';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 
 @Component({
@@ -25,9 +26,12 @@ export class SidebarComponent {
 
   menus: any = [];
 
-  constructor(public sidebarservice: SidebarService) {
+  constructor(
+    public sidebarservice: SidebarService,
+    private authService: AuthService,
+    private router: Router) {
     this.menus = sidebarservice.getMenuList();
-   }
+  }
 
   getSideBarState() {
     return this.sidebarservice.getSidebarState();
@@ -56,6 +60,11 @@ export class SidebarComponent {
 
   hasBackgroundImage() {
     return this.sidebarservice.hasBackgroundImage;
+  }
+
+  logoutUser() {
+    this.router.navigateByUrl('/login');
+    this.authService.logoutUser();
   }
 
 }

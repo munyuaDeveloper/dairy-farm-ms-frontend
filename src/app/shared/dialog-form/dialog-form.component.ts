@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, UntypedFormControl, Validators } from '@angular/forms';
 import { CategoryFormFields } from '../interface';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-dialog-form',
@@ -73,7 +74,7 @@ import { CategoryFormFields } from '../interface';
 
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-primary" (click)="bsModalRef.hide()">{{closeBtnName}}</button>
+      <button type="button" class="btn btn-primary" [disabled]="createForm.invalid" (click)="submitData()">{{closeBtnName}}</button>
     </div>
   `,
   styles: [
@@ -85,8 +86,10 @@ export class DialogFormComponent implements OnInit {
   formConstructed = false;
   createForm!: FormGroup;
   dynamicFormFields: CategoryFormFields[] = [];
+  @Output() action = new EventEmitter();
 
-  constructor(public bsModalRef: BsModalRef, private fb: FormBuilder) { }
+  constructor(public bsModalRef: BsModalRef,
+     private fb: FormBuilder) { }
 
   ngOnInit() {
     this.createForm = this.fb.group({})
@@ -106,4 +109,9 @@ export class DialogFormComponent implements OnInit {
       });
     }
   }
+
+  submitData(): void {
+    this.action.emit(this.createForm.value);
+    this.bsModalRef.hide();
+}
 }

@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { SidebarService } from './layout/sidebar/sidebar.service';
 import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Event, Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,9 @@ export class AppComponent implements OnInit {
   public getScreenWidth: any;
   loading = false;
 
-  constructor(private sidebarService: SidebarService, private router: Router) { }
+  constructor(private sidebarService: SidebarService,
+    private spinner: NgxSpinnerService,
+     private router: Router) { }
 
   ngOnInit() {
     this.getScreenWidth = window.innerWidth;
@@ -19,14 +22,14 @@ export class AppComponent implements OnInit {
     this.router.events.subscribe((event: Event) => {
       switch (true) {
         case event instanceof NavigationStart: {
-          this.loading = true;
+          this.spinner.show()
           break;
         }
 
         case event instanceof NavigationEnd:
         case event instanceof NavigationCancel:
         case event instanceof NavigationError: {
-          setTimeout(()=> { this.loading = false;},500)
+          setTimeout(()=> { this.spinner.hide();},500)
           this.toggleSidebar();
           break;
         }

@@ -11,21 +11,20 @@
         <th>Email</th>
         <th>Phone Number</th>
         <th>Designation</th>
-        <th>Username</th>
         <th>Action</th>
       </thead>
       <tbody>
-        <tr *ngFor="let user of [1,2,3,4,5]">
+        <tr *ngFor="let user of ($_staffs | async)?.data">
           <td>
             <img class="table-img" src="assets/img/user.jpg">
           </td>
           <td>
-            Peter Munyua
+            {{user?.first_name | titlecase}} {{user?.last_name | titlecase}}
           </td>
-          <td>munyuapeter07@gmail.com</td>
+          <td>{{user?.email}}</td>
           <td>0705984772</td>
-          <td>Manager</td>
-          <td>munyua</td>
+          <td>{{user?.role | titlecase}}</td>
+          
           <td>
             <button class="btn btn-info text-white"><i class="fas fa-edit"></i></button>
           </td>

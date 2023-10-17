@@ -2,6 +2,18 @@ export const formFields = {
     createCowRecord: [
         {
             id: '1',
+            name: 'Name',
+            code: 'name',
+            place_holder: 'Cow Name',
+            input_type: 'INPUT',
+            field_type: 'text',
+            category: '',
+            required: true,
+            field_options: [],
+            is_filterable: false,
+        },
+        {
+            id: '2',
             name: 'Cow Control Number',
             code: 'cow_control_number',
             place_holder: 'Control Number',
@@ -13,11 +25,11 @@ export const formFields = {
             is_filterable: false,
         },
         {
-            id: '2',
+            id: '3',
             name: 'Cow Type',
-            code: 'cow_type',
+            code: 'category',
             place_holder: 'Cow Type',
-            input_type: 'INPUT',
+            input_type: 'SELECT',
             field_type: 'text',
             category: '',
             required: true,
@@ -25,7 +37,7 @@ export const formFields = {
             is_filterable: false,
         },
         {
-            id: '3',
+            id: '4',
             name: 'Select Cow Gender',
             code: 'cow_gender',
             place_holder: 'Cow Gender',
@@ -48,7 +60,7 @@ export const formFields = {
             is_filterable: false,
         },
         {
-            id: '4',
+            id: '5',
             name: 'Select Cow Status',
             code: 'status',
             place_holder: 'Status',
@@ -58,12 +70,12 @@ export const formFields = {
             required: true,
             field_options: [
                 {
-                    id: '1',
+                    id: 'Available',
                     name: 'Available',
                     category_field: 'available'
                 },
                 {
-                    id: '2',
+                    id: 'Sold',
                     name: 'Sold',
                     category_field: 'sold'
                 }
@@ -71,7 +83,7 @@ export const formFields = {
             is_filterable: false,
         },
         {
-            id: '5',
+            id: '6',
             name: 'Date of Birth',
             code: 'date_birth',
             place_holder: 'Date of birth',
@@ -171,10 +183,10 @@ export const formFields = {
     createMilkCollectionRecord: [
         {
             id: '1',
-            name: 'Cow Number',
-            code: 'cow_number',
-            place_holder: 'Cow number',
-            input_type: 'INPUT',
+            name: 'Cow',
+            code: 'cow',
+            place_holder: 'Cow',
+            input_type: 'SELECT',
             field_type: 'text',
             category: '',
             required: true,
@@ -196,7 +208,7 @@ export const formFields = {
         {
             id: '3',
             name: 'Liters',
-            code: 'liters',
+            code: 'liters_per_day',
             place_holder: 'Liters',
             input_type: 'INPUT',
             field_type: 'number',

@@ -16,18 +16,18 @@
         <th>Action</th>
       </thead>
       <tbody>
-        <tr *ngFor="let cow of [1,2,3,4,5]">
+        <tr *ngFor="let cow of ($_cow_records | async)">
           <td>
             <img class="table-img" src="assets/img/cow.jpg">
           </td>
           <td>
-            #00{{cow}}
+            {{cow?.cow_control_number}}
           </td>
-          <td>Joy</td>
-          <td>Female</td>
-          <td>Freshian</td>
-          <td>20/03/2023</td>
-          <td class="text-success">Available</td>
+          <td>{{cow?.name | titlecase}}</td>
+          <td>{{cow?.gender | titlecase}}</td>
+          <td>{{cow?.category?.name | titlecase}}</td>
+          <td>{{cow?.date_of_birth | date: 'fullDate'}}</td>
+          <td class="text-success">{{cow?.status | titlecase}}</td>
           <td>
             <button class="btn btn-info text-white"><i class="fas fa-edit"></i></button>
           </td>

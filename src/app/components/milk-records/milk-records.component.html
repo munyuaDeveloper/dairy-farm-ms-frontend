@@ -6,18 +6,20 @@
   <div class="table-responsive">
     <table class="table table-striped">
       <thead class="table-dark p-2">
-        <th>ID</th>
+        <th>#</th>
+        <th>Cow</th>
         <th>Cow Number</th>
         <th>Date</th>
         <th>Liters</th>
         <th>Action</th>
       </thead>
       <tbody>
-        <tr *ngFor="let record of [1, 2, 3, 4, 5]">
-          <td>{{ record }}</td>
-          <td>#00{{ record }}</td>
-          <td>20/09/2023</td>
-          <td>30L</td>
+        <tr *ngFor="let record of ($_milk_records | async); let i = index;">
+          <td>{{ i + 1 }}</td>
+          <td>{{ record?.cow?.name | titlecase}}</td>
+          <td>{{ record?.cow?.cow_control_number }}</td>
+          <td>{{record?.date | date: 'fullDate'}}</td>
+          <td>{{record?.liters_per_day}} L</td>
           <td>
             <button class="btn btn-info text-white">
               <i class="fas fa-edit"></i>
