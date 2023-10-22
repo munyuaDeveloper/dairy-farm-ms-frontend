@@ -14,7 +14,7 @@
         <th>Action</th>
       </thead>
       <tbody>
-        <tr *ngFor="let user of ($_staffs | async)?.data">
+        <tr *ngFor="let user of ($_staffs | async)">
           <td>
             <img class="table-img" src="assets/img/user.jpg">
           </td>
@@ -22,7 +22,7 @@
             {{user?.first_name | titlecase}} {{user?.last_name | titlecase}}
           </td>
           <td>{{user?.email}}</td>
-          <td>0705984772</td>
+          <td>{{user?.phone_number}}</td>
           <td>{{user?.role | titlecase}}</td>
           
           <td>

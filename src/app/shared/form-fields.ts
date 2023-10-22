@@ -156,24 +156,24 @@ export const formFields = {
             field_options: [
                 {
                     id: '1',
-                    name: 'Manager',
-                    category_field: 'manager'
+                    name: 'Admin',
+                    category_field: 'Admin'
                 },
                 {
                     id: '2',
-                    name: 'Worker',
-                    category_field: 'worker'
+                    name: 'Staff',
+                    category_field: 'Staff'
                 }
             ],
             is_filterable: false,
         },
         {
             id: '6',
-            name: 'Username',
-            code: 'username',
-            place_holder: 'Username',
+            name: 'Password',
+            code: 'password',
+            place_holder: 'Password',
             input_type: 'INPUT',
-            field_type: 'text',
+            field_type: 'password',
             category: '',
             required: true,
             field_options: [],

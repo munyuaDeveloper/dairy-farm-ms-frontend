@@ -101,7 +101,7 @@ export class DialogFormComponent implements OnInit {
     if (this.dynamicFormFields.length !== 0) {
       this.dynamicFormFields.forEach((element: CategoryFormFields) => {
         if (element.required) {
-          this.createForm.addControl(element.code, new UntypedFormControl('', Validators.required))
+          this.createForm.addControl(element.code, new UntypedFormControl('', [Validators.required, Validators.pattern('')]))
         } else {
           this.createForm.addControl(element.code, new UntypedFormControl(''))
         }

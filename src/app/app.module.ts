@@ -13,6 +13,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptor } from './guards/tokenInterceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ApiLLoadrInterceptor } from './guards/apiLoaderInterceptor';
+import { ToastrModule } from 'ngx-toastr';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true
 };
@@ -52,7 +53,14 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         PerfectScrollbarModule,
         BsDropdownModule.forRoot(),
         FormsModule,
-        HttpClientModule
+        HttpClientModule,
+        ToastrModule.forRoot(
+            {
+                timeOut: 5000,
+                positionClass: 'toast-top-right',
+                preventDuplicates: true,
+              }
+        ),
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

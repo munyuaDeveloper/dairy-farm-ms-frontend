@@ -9,12 +9,13 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+  title = 'dairy-farm-ms';
   public getScreenWidth: any;
   loading = false;
 
   constructor(private sidebarService: SidebarService,
     private spinner: NgxSpinnerService,
-     private router: Router) { }
+    private router: Router) { }
 
   ngOnInit() {
     this.getScreenWidth = window.innerWidth;
@@ -29,7 +30,7 @@ export class AppComponent implements OnInit {
         case event instanceof NavigationEnd:
         case event instanceof NavigationCancel:
         case event instanceof NavigationError: {
-          setTimeout(()=> { this.spinner.hide();},500)
+          setTimeout(() => { this.spinner.hide(); }, 500)
           this.toggleSidebar();
           break;
         }

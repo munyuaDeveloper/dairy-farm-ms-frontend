@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MilkRecordsComponent } from './milk-records.component';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 
 describe('MilkRecordsComponent', () => {
   let component: MilkRecordsComponent;
@@ -8,7 +10,8 @@ describe('MilkRecordsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ MilkRecordsComponent ]
+      imports: [ MilkRecordsComponent ],
+      providers: [BsModalService, ComponentLoaderFactory]
     })
     .compileComponents();
 

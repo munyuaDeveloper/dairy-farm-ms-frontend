@@ -7,6 +7,7 @@ import { BreadcrumbComponent } from "../../layout/breadcrumb/breadcrumb.componen
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { DialogFormComponent } from 'src/app/shared/dialog-form/dialog-form.component';
 import { Observable, map, take, tap } from 'rxjs';
+import { MessageService } from 'src/app/shared/services/message.service';
 
 @Component({
   selector: 'app-cows',
@@ -25,7 +26,8 @@ export class CowsComponent {
 
   constructor(
     private modalService: BsModalService,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private messageService: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -53,6 +55,7 @@ export class CowsComponent {
       .pipe(
         take(1),
         tap(res => {
+          this.messageService.showSuccess('Cow record created')
           this.getCowRecords();
         })
       )

@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { BreadcrumbComponent } from "../../layout/breadcrumb/breadcrumb.component";
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { BehaviorSubject, Observable, map, take, tap } from 'rxjs';
+import { MessageService } from '../../shared/services/message.service';
 
 
 @Component({
@@ -27,7 +28,8 @@ export class MilkRecordsComponent {
 
   constructor(
     private modalService: BsModalService,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private messageService: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -55,6 +57,7 @@ export class MilkRecordsComponent {
       .pipe(
         take(1),
         tap(res => {
+          this.messageService.showSuccess('Milk collection record created')
           this.getMilkRecords();
         })
       )

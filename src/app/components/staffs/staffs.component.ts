@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BreadcrumbComponent } from "../../layout/breadcrumb/breadcrumb.component";
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
-import { Observable } from 'rxjs';
+import { Observable, map, take, tap } from 'rxjs';
+import { MessageService } from '../../shared/services/message.service';
 
 @Component({
   selector: 'app-staffs',
@@ -22,11 +23,17 @@ export class StaffsComponent implements OnInit {
 
   constructor(
     private modalService: BsModalService,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private messageService: MessageService
   ) { }
 
   ngOnInit(): void {
-    this.$_staffs = this.sharedService.getRequest('/api/v1/users');
+    this.getUserRecords()
+  }
+
+  getUserRecords() {
+    this.$_staffs = this.sharedService.getRequest('/api/v1/users')
+      .pipe(map((res: any) => res.data));
   }
 
   openModalWithComponent() {
@@ -39,5 +46,20 @@ export class StaffsComponent implements OnInit {
     };
     this.bsModalRef = this.modalService.show(DialogFormComponent, initialState);
     this.bsModalRef.content.closeBtnName = 'Save Record';
+    this.bsModalRef.content.action.pipe(take(1)).subscribe((value: any) => {
+      this.createUserRecord(value)
+    });
+  }
+
+  createUserRecord(body: any) {
+    this.sharedService.postRequest('/api/v1/users', body)
+      .pipe(
+        take(1),
+        tap(res => {
+          this.messageService.showSuccess('User record created')
+          this.getUserRecords();
+        })
+      )
+      .subscribe()
   }
 }
