@@ -29,7 +29,7 @@
           <td>{{cow?.date_of_birth | date: 'fullDate'}}</td>
           <td class="text-success">{{cow?.status | titlecase}}</td>
           <td>
-            <button class="btn btn-info text-white"><i class="fas fa-edit"></i></button>
+            <button class="btn btn-info text-white" (click)="openModalToEdit(cow)"><i class="fas fa-edit"></i></button>
           </td>
         </tr>
 

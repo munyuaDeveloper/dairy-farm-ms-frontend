@@ -19,8 +19,8 @@ export class SharedService {
   postRequest(url: string, payload: any) {
     return this.http.post(`${this.baseUrl}${url}`, payload)
   }
-  putRequest(url: string, payload: any) {
-    return this.http.post(`${this.baseUrl}${url}`, payload)
+  putRequest(url: string, id: string, payload: any) {
+    return this.http.put(`${this.baseUrl}${url}/${id}`, payload)
   }
   deleteRequest(url: string, id: string) {
     return this.http.delete(`${this.baseUrl}${url}/${id}`)

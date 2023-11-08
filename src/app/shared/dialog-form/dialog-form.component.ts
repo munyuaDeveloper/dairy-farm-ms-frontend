@@ -31,7 +31,7 @@ import { Subject } from 'rxjs';
 
                   <select class="form-select" [formControlName]="control.code" [id]="control.code">
                       <option *ngFor="let val of control.field_options"
-                          [value]="val.id">
+                          [value]="val._id">
                           {{val.name | titlecase}}</option>
                   </select>
                   <label [for]="control.code">{{control.name}}</label>
@@ -89,7 +89,7 @@ export class DialogFormComponent implements OnInit {
   @Output() action = new EventEmitter();
 
   constructor(public bsModalRef: BsModalRef,
-     private fb: FormBuilder) { }
+    private fb: FormBuilder) { }
 
   ngOnInit() {
     this.createForm = this.fb.group({})
@@ -101,9 +101,10 @@ export class DialogFormComponent implements OnInit {
     if (this.dynamicFormFields.length !== 0) {
       this.dynamicFormFields.forEach((element: CategoryFormFields) => {
         if (element.required) {
-          this.createForm.addControl(element.code, new UntypedFormControl('', [Validators.required, Validators.pattern('')]))
+          this.createForm.addControl(element.code, new UntypedFormControl(element.input_type === 'DATE' ? this.convertDate(element.value) : element.value,
+            [Validators.required, Validators.pattern('')]))
         } else {
-          this.createForm.addControl(element.code, new UntypedFormControl(''))
+          this.createForm.addControl(element.code, new UntypedFormControl(element.input_type === 'DATE' ? this.convertDate(element.value) : element.value))
         }
         this.formConstructed = true;
       });
@@ -113,5 +114,8 @@ export class DialogFormComponent implements OnInit {
   submitData(): void {
     this.action.emit(this.createForm.value);
     this.bsModalRef.hide();
-}
+  }
+  convertDate(date: string) {
+    return new Date(date).toISOString().slice(0, 10)
+  }
 }

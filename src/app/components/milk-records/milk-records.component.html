@@ -21,7 +21,7 @@
           <td>{{record?.date | date: 'fullDate'}}</td>
           <td>{{record?.liters_per_day}} L</td>
           <td>
-            <button class="btn btn-info text-white">
+            <button class="btn btn-info text-white" (click)="openModalToEdit(record)">
               <i class="fas fa-edit"></i>
             </button>
           </td>

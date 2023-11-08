@@ -39,7 +39,7 @@ export const formFields = {
         {
             id: '4',
             name: 'Select Cow Gender',
-            code: 'cow_gender',
+            code: 'gender',
             place_holder: 'Cow Gender',
             input_type: 'SELECT',
             field_type: 'text',
@@ -47,12 +47,12 @@ export const formFields = {
             required: true,
             field_options: [
                 {
-                    id: '1',
+                    _id: 'Male',
                     name: 'Male',
                     category_field: 'male'
                 },
                 {
-                    id: '2',
+                    _id: 'Female',
                     name: 'Female',
                     category_field: 'female'
                 }
@@ -70,12 +70,12 @@ export const formFields = {
             required: true,
             field_options: [
                 {
-                    id: 'Available',
+                    _id: 'Available',
                     name: 'Available',
                     category_field: 'available'
                 },
                 {
-                    id: 'Sold',
+                    _id: 'Sold',
                     name: 'Sold',
                     category_field: 'sold'
                 }
@@ -85,10 +85,34 @@ export const formFields = {
         {
             id: '6',
             name: 'Date of Birth',
-            code: 'date_birth',
+            code: 'date_of_birth',
             place_holder: 'Date of birth',
             input_type: 'DATE',
             field_type: 'date',
+            category: '',
+            required: true,
+            field_options: [],
+            is_filterable: false,
+        },
+        {
+            id: '7',
+            name: 'Dam',
+            code: 'dam',
+            place_holder: 'Dam (Mother)',
+            input_type: 'SELECT',
+            field_type: 'text',
+            category: '',
+            required: true,
+            field_options: [],
+            is_filterable: false,
+        },
+        {
+            id: '8',
+            name: 'Sire',
+            code: 'sire',
+            place_holder: 'Sire (AI Bull)',
+            input_type: 'INPUT',
+            field_type: 'text',
             category: '',
             required: true,
             field_options: [],
@@ -147,7 +171,7 @@ export const formFields = {
         {
             id: '5',
             name: 'Designation',
-            code: 'designation',
+            code: 'role',
             place_holder: 'Designation',
             input_type: 'SELECT',
             field_type: 'text',
@@ -155,12 +179,12 @@ export const formFields = {
             required: true,
             field_options: [
                 {
-                    id: '1',
+                    _id: 'Admin',
                     name: 'Admin',
                     category_field: 'Admin'
                 },
                 {
-                    id: '2',
+                    _id: 'Staff',
                     name: 'Staff',
                     category_field: 'Staff'
                 }
@@ -199,7 +223,7 @@ export const formFields = {
             code: 'date',
             place_holder: 'Date Collected',
             input_type: 'DATE',
-            field_type: 'text',
+            field_type: 'date',
             category: '',
             required: true,
             field_options: [],

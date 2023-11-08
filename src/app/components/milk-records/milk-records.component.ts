@@ -1,6 +1,6 @@
 import { SharedService } from './../../shared/services/shared.service';
 import { DialogFormComponent } from 'src/app/shared/dialog-form/dialog-form.component';
-import { CategoryFormFields } from './../../shared/interface';
+import { CategoryFormFields, MilkRecord } from './../../shared/interface';
 import { formFields } from './../../shared/form-fields';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -71,7 +71,7 @@ export class MilkRecordsComponent {
     this.sharedService.getRequest('/api/v1/cow-records')
       .pipe(
         take(1),
-        map((cows: any) => cows?.data.map((cow: any) => ({ id: cow._id, name: cow.name }))),
+        map((cows: any) => cows?.data.map((cow: any) => ({ _id: cow._id, name: cow.name }))),
         tap((res: any) => {
           this.cows = res;
           this.dynamicFormFields = this.assignFieldOptions(formFields.createMilkCollectionRecord)
@@ -87,5 +87,41 @@ export class MilkRecordsComponent {
       }
       return field;
     });
+  }
+
+  openModalToEdit(record: MilkRecord) {
+    this.dynamicFormFields.map((res: CategoryFormFields) => {
+      for (const [key, value] of Object.entries(record)) {
+        if (res?.code === key) {
+          res.value = (typeof value === 'string' || typeof value === 'number') ? value : value?._id ;
+          break;
+        }
+      }
+      return res;
+    })
+
+    const initialState: ModalOptions = {
+      initialState: {
+        title: 'Edit Milk Record',
+        dynamicFormFields: this.dynamicFormFields
+      },
+      class: 'modal-md modal-dialog-centered',
+    };
+    this.bsModalRef = this.modalService.show(DialogFormComponent, initialState);
+    this.bsModalRef.content.closeBtnName = 'Save Record';
+    this.bsModalRef.content.action.pipe(take(1)).subscribe((value: any) => {
+      this.updateRecord(record, value)
+    });
+  }
+  updateRecord(record: MilkRecord, body: any) {
+    this.sharedService.putRequest('/api/v1/milk-collection-records', record?._id, body)
+      .pipe(
+        take(1),
+        tap(res => {
+          this.messageService.showSuccess('Record updated successfully')
+          this.getMilkRecords();
+        })
+      )
+      .subscribe()
   }
 }
