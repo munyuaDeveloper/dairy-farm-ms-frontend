@@ -1,0 +1,99 @@
+# server blocks for incoming HTTP requests
+server {
+    # server block for 'munyua.tech', 'www.munyua.tech' domains
+    listen 80;
+    listen [::]:80;
+    server_name munyua.tech www.munyua.tech;
+    # redirect any HTTP request to HTTPS
+    return 301 https://$http_host$request_uri;
+}
+server {
+    # server block for 'dairy.api.munyua.tech', 'www.dairy.api.munyua.tech' domains
+    listen 80;
+    listen [::]:80;
+    server_name dairy.api.munyua.tech www.dairy.api.munyua.tech;
+    # redirect any HTTP request to HTTPS
+    return 301 https://$http_host$request_uri;
+}
+server {
+    # server block for 'dairy.api.munyua.tech' domain
+    listen 80;
+    listen [::]:80;
+    server_name dairy.api.munyua.tech;
+
+    location / {
+        proxy_pass http://localhost:8000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+server {
+    # server block for 'munyua.tech' domain
+    listen 80;
+    listen [::]:80;
+    server_name munyua.tech;
+    root /dairy-farm-ms-frontend/dist/dairy-farm-ms;
+    index index.html index.htm;
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}
+server {
+    # server block for all the other requests
+    # this block will be a default server block listening on port 80
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    # close the connection immediately
+    return 444;
+}
+
+# server blocks for incoming HTTPS requests
+server {
+    listen [::]:443 ssl;
+    listen 443 ssl;
+    server_name munyua.tech www.munyua.tech;
+
+    # SSL configuration by certbot
+    ssl_certificate /etc/letsencrypt/live/munyua.tech/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/munyua.tech/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+    root /dairy-farm-ms-frontend/dist/dairy-farm-ms;
+    index index.html index.htm;
+    location / {
+        try_files $uri $uri/ /index.html;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+
+server {
+    listen [::]:443 ssl;
+    listen 443 ssl;
+    server_name dairy.api.munyua.tech;
+
+    # SSL configuration by certbot
+    ssl_certificate /etc/letsencrypt/live/dairy.api.munyua.tech/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/dairy.api.munyua.tech/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+    location / {
+        proxy_pass http://localhost:8000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+
+
+#### deploy frontend app using  scp -r ./dist root@146.190.166.28:/var/www/ 

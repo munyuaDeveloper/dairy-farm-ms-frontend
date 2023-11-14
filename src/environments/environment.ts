@@ -1,4 +1,4 @@
 export const environment = {
     production: false,
-    baseApiUrl: 'https://munyua.tech'
+    baseApiUrl: 'https://dairy.api.munyua.tech'
 };
