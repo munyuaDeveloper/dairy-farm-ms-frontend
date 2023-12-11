@@ -1,0 +1,32 @@
+<h3>Question one</h3>
+<div class="add-items">
+  <input data-testid="add-item" [(ngModel)]="newItem" (keydown.enter)="addItem()" placeholder="Type an item" />
+  <button data-testid="sort-direction" (click)="toggleSortDirection()">
+    {{ sortDirection === 'asc' ? '⬇️' : '⬆️' }}
+  </button>
+  <button data-testid="clear-list" (click)="clearList()">Clear List</button>
+</div>
+
+<ul data-testid="items-list">
+  <li *ngFor="let item of items">{{ item }}</li>
+</ul>
+
+
+<h3>Question two</h3>
+  <div style="margin-bottom: 20px;">
+    <input data-testid="assembly-add-item" [(ngModel)]="inputText" (keydown.enter)="addTask()"
+      placeholder="Add item..." />
+  </div>
+
+  <div style="display: flex; gap: 20px; width: 100%;">
+    <div *ngFor="let stage of stages" data-testid="assembly-stage">
+      <h3>{{ stage }}</h3>
+      <button *ngFor="let item of stagesObject[stage]; let i = index" data-testid="assembly-item"
+        style="width: 100%; margin-bottom: 10px;" (click)="moveforward(i, stage)"
+        (contextmenu)="moveBackward(i, stage); $event.preventDefault()"
+        [innerHTML]="item">
+      </button>
+    </div>
+  </div>
+
+
