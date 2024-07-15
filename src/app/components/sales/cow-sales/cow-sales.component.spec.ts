@@ -1,20 +1,36 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { BsModalService } from 'ngx-bootstrap/modal';
 import { CowSalesComponent } from './cow-sales.component';
+import * as angularCore from '@angular/core';
 
 describe('CowSalesComponent', () => {
   let component: CowSalesComponent;
-  let fixture: ComponentFixture<CowSalesComponent>;
+  const injectSpy = jest.spyOn(angularCore, 'inject');
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [ CowSalesComponent ]
-    })
-    .compileComponents();
+  const mockModalService = {
+    show: jest.fn()
+  }
 
-    fixture = TestBed.createComponent(CowSalesComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  const setupSpy = (mockModalService: unknown) => {
+    injectSpy.mockImplementation((providerToken: unknown) => {
+      if (providerToken === BsModalService) {
+        return mockModalService;
+      }
+    });
+
+    return new CowSalesComponent();
+  };
+
+  beforeEach(() => {
+    injectSpy.mockReset();
+
+    component = setupSpy(mockModalService as unknown);
+
+    jest.clearAllMocks();
+  });
+
+  afterAll(() => {
+    injectSpy.mockRestore();
+    jest.resetAllMocks();
   });
 
   it('should create', () => {
